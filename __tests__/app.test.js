@@ -42,7 +42,7 @@ describe('AnyApi routes', () => {
 
   it('gets a list of NFTs', async () => {
     const expected = await NFT.findAll();
-    const res = await request(app).get(`/api/v1/nfts`);
+    const res = await request(app).get('/api/v1/nfts');
 
     expect(res.body).toEqual(expected);
   });
@@ -51,12 +51,19 @@ describe('AnyApi routes', () => {
     const expected = {
       id: expect.any(String),
       name: 'BAYC',
-      category: 'PFP',
+      category: 'Ecosystem',
       chain: 'Eth',
     };
-    const res = await request(app)
+    const resp = await request(app)
       .patch('/api/v1/nfts/1')
       .send({ category: 'Ecosystem' });
+    expect(resp.body).toEqual(expected);
+  });
+
+  it('Deletes an NFT from the db', async () => {
+    const expected = await NFT.findById(1);
+    const res = await request(app).delete(`/api/v1/nfts/${expected.id}`);
+
     expect(res.body).toEqual(expected);
   });
 });
