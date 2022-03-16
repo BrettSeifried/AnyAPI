@@ -9,8 +9,8 @@ CREATE TABLE nfts (
     chain TEXT NOT NULL
 );
 
--- INSERT INTO
---     nfts (name, category, chain)
--- VALUES
---     ('BAYC', 'PFP', 'Eth'),
---     ('CryptoPunks', 'PFP', 'Eth');
+INSERT INTO
+    nfts (name, category, chain)
+VALUES
+    ('BAYC', 'PFP', 'Eth'),
+    ('CryptoPunks', 'PFP', 'Eth');

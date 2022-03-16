@@ -46,4 +46,17 @@ describe('AnyApi routes', () => {
 
     expect(res.body).toEqual(expected);
   });
+
+  it('Update by ID', async () => {
+    const expected = {
+      id: expect.any(String),
+      name: 'BAYC',
+      category: 'PFP',
+      chain: 'Eth',
+    };
+    const res = await request(app)
+      .patch('/api/v1/nfts/1')
+      .send({ category: 'Ecosystem' });
+    expect(res.body).toEqual(expected);
+  });
 });
