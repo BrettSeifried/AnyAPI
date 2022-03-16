@@ -39,4 +39,11 @@ describe('AnyApi routes', () => {
 
     expect(res.body).toEqual(nft);
   });
+
+  it('gets a list of NFTs', async () => {
+    const expected = await NFT.findAll();
+    const res = await request(app).get(`/api/v1/nfts`);
+
+    expect(res.body).toEqual(expected);
+  });
 });
