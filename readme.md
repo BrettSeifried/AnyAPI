@@ -13,7 +13,7 @@ Creating a Api with PosgreSQL, Beekeeper, Haruko, and Thunder Client.
 
 ### Actions
 
-[] Create = Insert
+[x] Create = Insert
 [] Read = Get
 [] Update = Patch/Put
 [] Delete = Delete

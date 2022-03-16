@@ -4,13 +4,19 @@ const request = require('supertest');
 const app = require('../lib/app');
 const NFT = require('../lib/models/Nfts');
 
-async function createNft({ name, category, chain }) {
-  const { rows } = await pool.query(
-    'INSERT INTO nfts(name, category, chain) VALUES ($1, $2, $3) RETURNING *;',
-    [name, category, chain]
-  );
-  return new NFT(rows[0]);
-}
+const data = {
+  name: 'BAYC',
+  category: 'PFP',
+  chain: 'Eth',
+};
+
+// async function createNft({ name, category, chain }) {
+//   const { rows } = await pool.query(
+//     'INSERT INTO nfts(name, category, chain) VALUES ($1, $2, $3) RETURNING *;',
+//     [name, category, chain]
+//   );
+//   return new NFT(rows[0]);
+// }
 
 describe('AnyApi routes', () => {
   beforeEach(() => {
@@ -22,13 +28,15 @@ describe('AnyApi routes', () => {
   });
 
   it('creates a NFT', async () => {
-    const expected = {
-      name: 'BAYC',
-      category: 'PFP',
-      chain: 'Eth',
-    };
-    const res = await request(app).post('/api/v1/nfts').send(expected);
+    const res = await request(app).post('/api/v1/nfts').send(data);
 
-    expect(res.body).toEqual({ id: expect.any(String), ...expected });
+    expect(res.body).toEqual({ id: expect.any(String), ...data });
+  });
+
+  it('Reads an NFT by id', async () => {
+    const nft = await NFT.insert(data);
+    const res = await request(app).get(`/api/v1/nfts/${nft.id}`);
+
+    expect(res.body).toEqual(nft);
   });
 });
