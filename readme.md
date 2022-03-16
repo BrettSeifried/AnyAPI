@@ -2,6 +2,8 @@
 
 Creating a Api with PosgreSQL, Beekeeper, Haruko, and Thunder Client.
 
+Api created with CRUD and REST.
+
 ## Method
 
 [] create test
@@ -14,6 +16,6 @@ Creating a Api with PosgreSQL, Beekeeper, Haruko, and Thunder Client.
 ### Actions
 
 [x] Create = Insert
-[] Read = Get
-[] Update = Patch/Put
-[] Delete = Delete
+[x] Read = Get
+[x] Update = Patch/Put
+[x] Delete = Delete
